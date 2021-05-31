@@ -1,0 +1,37 @@
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+<script>
+ 
+//  $.get("http://localhost:3000/pdf", function(data, status){
+//     console.log("Data: " + data + "\nStatus: " + status);
+//   });
+
+// $.fileDownload('some/file.pdf')
+//   .done(function () { alert('File download a success!'); })
+//   .fail(function () { alert('File download failed!'); });
+
+  $.ajax({
+        url: 'http://localhost:3000/geratePdf',
+        method: 'GET',
+        data: {
+          cdsProdutos: encodeURIComponent("1001,1338,1220")
+        },
+        xhrFields: {
+            responseType: 'blob'
+        },
+        success: function (data) {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(data);
+            a.href = url;
+            a.download = 'myfile.pdf';
+            document.body.append(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        }
+    });
+
+</script>

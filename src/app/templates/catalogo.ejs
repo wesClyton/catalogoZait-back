@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+
+    @font-face {
+        font-family: 'Gotham';
+        src: url('http://weslley.info/fonts/Gotham-Bold.woff2') format('woff2'),
+            url('http://weslley.info/fonts/Gotham-Bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('http://weslley.info/fonts/fonts/Helvetica.woff2') format('woff2'),
+            url('http://weslley.info/fonts/fonts/Helvetica.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('http://weslley.info/fonts/fonts/Helvetica-Light.woff2') format('woff2'),
+            url('http://weslley.info/fonts/fonts/Helvetica-Light.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('http://weslley.info/fonts/fonts/Helvetica-Bold.woff2') format('woff2'),
+            url('http://weslley.info/fonts/fonts/Helvetica-Bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    html {
+      box-sizing: border-box;
+    }
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    html,
+    body {
+      font-family: 'Helvetica';
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #444444;
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 0 0 10px 0;
+    }
+
+    .img-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .page {
+      position: relative;
+      height: 100vh;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      page-break-after: always;
+      border-bottom: 5px solid #ccc;
+    }
+
+    .page.produtos {
+      padding: 20px 20px 0px;
+    }
+
+    .referencia {
+      width: 50%;
+      display: inline-block;
+    }
+
+    .referencia h1 {
+      display: inline-block;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 28px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .referencia h2 {
+      font-size: 34px;
+      font-weight: 300;
+    }
+
+    .referencia span {
+      display: block;
+      width: 50px;
+      height: 1px;
+      background: #000;
+      padding: 0;
+      margin: 15px 0 0;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      width: 80px;
+      height: auto;
+    }
+
+    .logo img {
+      width: 100%;
+    }
+
+    .images {
+      position: relative;
+      top: -100px;
+    }
+
+    .images img {
+      position: absolute;
+    }
+
+    .images .foto-1 {
+      width: 400px;
+      height: 727px;
+      top: 100px;
+      left: 0;
+    }
+
+    .images .foto-2 {
+      width: 280px;
+      height: 515px;
+      top: 0;
+      right: 0;
+    }
+
+    .images .foto-3 {
+      width: 280px;
+      height: 515px;
+      top: 520px;
+      right: 0;
+    }
+
+    .preco {
+      font-weight: 300;
+      position: absolute;
+      bottom: 40px;
+      right: 20px;
+      width: 280px;
+      text-align: center;
+    }
+
+    .preco p {
+      display: block;
+      font-size: 18px;
+      line-height: 18px;
+      color: #adadad;
+      margin: 0 0 5px;
+      padding: 0;
+    }
+
+    .preco span {
+      display: inline-block;
+      font-size: 24px;
+      line-height: 24px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      vertical-align: top;
+    }
+
+    .preco h3 {
+      display: inline-block;
+      font-size: 54px;
+      line-height: 54px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      vertical-align: top;
+      font-weight: 300;
+    }
+
+    .preco > div {
+      display: inline-block;
+      text-align: left;
+    }
+
+    .grade {
+      width: 300px;
+      position: absolute;
+      top: 910px;
+      left: 70px;
+      padding: 20px 30px;
+      background: #fff;
+      -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3); 
+      box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
+
+      border-radius: 10px;
+    }
+
+    .grade .texto {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .grade .texto h4 {
+      display: inline-block;
+      font-size: 18px;
+      line-height: 20px;
+      font-weight: 300;
+      vertical-align: top;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grade .texto h4 span {
+      display: block;
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    .grade .texto p {
+      float: right;
+      font-weight: 300;
+      vertical-align: top;
+      text-align: right;
+      padding-top: 5px;
+      color: #aaaaaa;
+      font-size: 14px;
+    }
+
+    .grade .texto p span {
+      display: block;
+    }
+
+    .grade .coluna {
+      display: inline-block;
+      vertical-align: top
+    }
+
+    .grade .item {
+      margin-bottom: 5px;
+    }
+
+    .grade .item .tamanho {
+      display: inline-block;
+      vertical-align: top;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      border: 1px solid #444444;
+      text-align: center;
+    }
+
+    .grade .item.inative .tamanho {
+      border-color: #e1e2e7;
+      color: #e1e2e7;
+    }
+
+    .grade .item .quantidade {
+      font-family: 'Gotham';
+      display: inline-block;
+      vertical-align: top;
+      width: 65px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 22px;
+      margin-left: 2px;
+      background: #63be09;
+      color: #fff;
+      text-align: center;
+    }
+
+    .grade .item.inative .quantidade {
+      background: #e1e2e7;
+      color: #fff;
+    }
+
+    .grade .coluna:nth-child(2) .quantidade {
+      margin-right: 10px;
+    }
+
+    @page {
+      width: '13.5in';
+      height: '17.4in';
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div class="page">
+    <img src="<%= capas[0].capa %>" class="img-cover">
+  </div>
+  <%
+
+    function compare( a, b ) {
+      if ( a.cdTamanhoErp < b.cdTamanhoErp ){
+        return -1;
+      }
+      if ( a.cdTamanhoErp > b.cdTamanhoErp ){
+        return 1;
+      }
+      return 0;
+    }
+
+    let data = new Date();
+    let hora = ('0'+data.getHours()).substr(-2) + ':' + ('0'+data.getMinutes()).substr(-2);
+
+
+    const year  = data.getFullYear();
+    const month = (data.getMonth() + 1).toString().padStart(2, "0");
+    const day   = data.getDate().toString().padStart(2, "0");
+      
+    dataFormat = day + '/' + month + '/' + year;
+  %>
+  <% produtos.forEach(produto => { %>
+    <div class="page produtos">
+      <div class="referencia">
+        <h1><%= produto.cdErp; %></h1>
+        <span></span>
+
+        <h2><%= produto.stNome; %></h2>
+      </div>
+      
+      <div class="logo"><img src="http://localhost:3000/capas/logo-zait.png"></div>
+
+      <div class="images">
+        <% 
+
+          let qtdeFotos = 3;
+          qtdeFotos = qtdeFotos - produto.fotos.length; 
+          let cont = 0;
+
+          produto.fotos.forEach(foto => { 
+            cont++;
+        %>
+            <img src="<%=foto.url%>" class="foto-<%=cont%>">
+        <%  if(cont >= 3) produto.fotos.length = 0; }); 
+        %>
+
+      </div>
+
+      <div class="grade">
+        <div class="texto">
+          <h4>Disponibilidade<span>de Estoque</span></h4>
+          <p>
+            <%=dataFormat%>
+            <span><%=hora%></span>
+          </p>
+        </div>
+
+        <%
+            let contT = 0; 
+            let classe = '';
+            let saldos = '';
+
+            if(isNaN(produto.tamanhos[0].stTamanho)) {
+              arrTamanhos = produto.tamanhos;
+            } else {
+              arrTamanhos = produto.tamanhos.sort(compare);
+            }
+
+            
+
+            for(let i = 0; i <= 11; i++) {
+              
+            <!-- produto.tamanhos.forEach(tamanho => {  -->
+              contT++;
+              saldos = 0;
+              
+              if(contT == 1) { %> <div class="coluna"> <% } %>
+              <% if(arrTamanhos[i]) { %>
+
+                <% 
+                  if(arrTamanhos[i].saldos <= 0 || arrTamanhos[i].saldos == "") { 
+                    classe = "inative"; 
+                  } else { 
+                    classe = "";
+
+                    if(arrTamanhos[i].saldos >= 4) {
+                      saldos = '+3';
+                    }else{
+                      saldos = arrTamanhos[i].saldos;
+                    }
+                  }
+                %>
+
+                <div class="item <%=classe%>">
+                  <div class="tamanho"><%=arrTamanhos[i].stTamanho%></div>
+                  <div class="quantidade"><%=saldos%></div>
+                </div>
+              <% } else { %>
+                <div class="item inative">
+                  <div class="tamanho">-</div>
+                  <div class="quantidade">-</div>
+                </div>
+              <% } %>
+
+              <% if(contT == 6) { %> </div><div class="coluna"> <% } %>
+            
+          <% } %>
+                
+          </div>
+
+        <!-- <div class="coluna">
+          <div class="item">
+            <div class="tamanho">34</div>
+            <div class="quantidade">+3</div>
+          </div>
+
+          <div class="item">
+            <div class="tamanho">34</div>
+            <div class="quantidade">+3</div>
+          </div>
+
+          <div class="item">
+            <div class="tamanho">34</div>
+            <div class="quantidade">+3</div>
+          </div>
+
+          <div class="item">
+            <div class="tamanho">34</div>
+            <div class="quantidade">+3</div>
+          </div>
+
+          <div class="item">
+            <div class="tamanho">34</div>
+            <div class="quantidade">+3</div>
+          </div>
+
+          <div class="item">
+            <div class="tamanho">34</div>
+            <div class="quantidade">+3</div>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="preco">
+        <div>
+          <p>Preço no atacado</p>
+          <span>R$</span>
+          <h3><%=produto.tamanhos[0].valores.toLocaleString('pt-br', {minimumFractionDigits: 2});%></h3>
+        </div>
+      </div>
+
+    </div>
+  <% }); %>
+
+  <div class="page">
+    <img src="<%= capas[0].contraCapa %>" class="img-cover">
+  </div>
+  
+</body>
+</html> 
