@@ -7,7 +7,7 @@ class Database {
 
   init() {
     this.mongoConnection = Mongoose.connect(
-      'mongodb://catalogozait:Zait2021@mongo_catalogo-zait:27017/catalogo-zait',
+      'mongodb://localhost:27017/catalogo-zait',
       {
         useCreateIndex: true,
         useNewUrlParser: true,
