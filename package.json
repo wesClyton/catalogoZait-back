@@ -5,7 +5,7 @@
   "author": "Weslley Hinsch",
   "license": "MIT",
   "scripts": {
-    "app": "node src/server.js"
+    "start": "node app"
   },
   "dependencies": {
     "axios": "^0.21.1",
