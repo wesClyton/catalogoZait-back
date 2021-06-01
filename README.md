@@ -1,7 +1,7 @@
 # catalogoZait-back
 
 ## Softwares/Dependencias Externas
-- MongoDB
+- MongoDB (Windows: https://drive.google.com/drive/folders/17GyJ638BBF6nV_dI_9ociqwVDJPjWSqz) (Osx: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 - Robo3T
 - Yarn
 
