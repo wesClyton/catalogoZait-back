@@ -15,4 +15,5 @@ $ yarn app
 
 
 ## Alimentar base de dados com os seeders
+$ npm install -g mong-seeding-cli
 $ seed -u 'mongodb://127.0.0.1:27017/catalogo-zait' --drop-database ./src/database/seeders 
