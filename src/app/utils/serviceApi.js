@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   url: 'https://zait.com.br/api/rest/act',
   items: {
     identidade: 'suporte@marknet.com.br',

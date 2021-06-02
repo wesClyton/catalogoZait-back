@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 import bcrypt from 'bcryptjs';
 
-import Admin from '../schemas/Admin';
+import Admin from '../schemas/Admin.js';
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 class AdminController {
   async insert(req, res) {

@@ -9,7 +9,7 @@ import FotosEspeciais from '../schemas/FotosEspeciais';
 import FotoCapa from '../schemas/FotoCapa';
 
 
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
 class PdfController {
 

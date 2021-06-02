@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 import axios from 'axios';
 
-import Categoria from '../schemas/Categorias';
-import serviceApi from '../utils/serviceApi';
+import Categoria from '../schemas/Categorias.js';
+import serviceApi from '../utils/serviceApi.js';
 
 class CategoriaController {
   async insert(req, res) {
