@@ -3,10 +3,10 @@ import path from 'path';
 import axios from 'axios';
 import _Arr from 'lodash';
 import { urlencoded } from 'express';
-import serviceApi from '../utils/serviceApi';
+import serviceApi from '../utils/serviceApi.js';
 
-import FotosEspeciais from '../schemas/FotosEspeciais';
-import FotoCapa from '../schemas/FotoCapa';
+import FotosEspeciais from '../schemas/FotosEspeciais.js';
+import FotoCapa from '../schemas/FotoCapa.js';
 
 
 import puppeteer from 'puppeteer';

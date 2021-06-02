@@ -1,5 +1,5 @@
 import axios from 'axios';
-import serviceApi from '../utils/serviceApi';
+import serviceApi from '../utils/serviceApi.js';
 
 class TamanhosController {
 

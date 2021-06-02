@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 import axios from 'axios';
 
-import Utils from '../utils/utils';
-import Classificacao from '../schemas/Classificacoes';
-import serviceApi from '../utils/serviceApi';
+import Utils from '../utils/utils.js';
+import Classificacao from '../schemas/Classificacoes.js';
+import serviceApi from '../utils/serviceApi.js';
 
 class ClassificacaoController {
   async insert(req, res) {

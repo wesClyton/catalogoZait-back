@@ -1,8 +1,8 @@
 import ejs  from 'ejs';
 import path from 'path';
 
-import ProdutosController from './ProdutosController';
-import FotoCapa from '../schemas/FotoCapa';
+import ProdutosController from './ProdutosController.js';
+import FotoCapa from '../schemas/FotoCapa.js';
 
 class PdfController {
 
