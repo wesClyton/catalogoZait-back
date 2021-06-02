@@ -6,7 +6,7 @@
   "author": "Weslley Hinsch",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node --experimental-specifier-resolution=node src/server.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
