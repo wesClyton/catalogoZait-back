@@ -2,14 +2,18 @@ import ejs  from 'ejs';
 import path from 'path';
 import axios from 'axios';
 import _Arr from 'lodash';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import { urlencoded } from 'express';
-import serviceApi from '../utils/serviceApi.js';
+import puppeteer from 'puppeteer';
 
+import serviceApi from '../utils/serviceApi.js';
 import FotosEspeciais from '../schemas/FotosEspeciais.js';
 import FotoCapa from '../schemas/FotoCapa.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-import puppeteer from 'puppeteer';
 
 class PdfController {
 
