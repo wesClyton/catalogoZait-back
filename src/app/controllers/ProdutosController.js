@@ -12,14 +12,14 @@ class ProdutosController {
       params.append(key, value);
     });
 
-    params.append('cdsCategoria', req.body.cdsCategoria);
     params.append('inStatus', 'A');
-    params.append('classificacoes', req.body.classificacoes);
-    params.append('cores', req.body.cores);
-    params.append('tamanhos', req.body.tamanhos);
-    params.append('precoMinimo', req.body.precoMinimo);
-    params.append('precoMaximo', req.body.precoMaximo);
     params.append('cdValor', '3');
+    req.query.cdsCategoria ? params.append('cdsCategoria', req.query.cdsCategoria) : undefined;
+    req.query.classificacoes ? params.append('classificacoes', req.query.classificacoes) : undefined;
+    req.query.cores ? params.append('cores', req.query.cores) : undefined;
+    req.query.tamanhos ? params.append('tamanhos', req.query.tamanhos) : undefined;
+    req.query.precoMinimo ? params.append('precoMinimo', req.query.precoMinimo) : undefined;
+    req.query.precoMaximo ? params.append('precoMaximo', req.query.precoMaximo) : undefined;
 
     await axios
       .post(`${serviceApi.url}/pegarCdsProduto`, params)
@@ -31,7 +31,7 @@ class ProdutosController {
 
         return res.json({ produtos: resultAPI, total: resultAPI.length });
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 
   async indexReferencias(req, res) {
@@ -41,10 +41,10 @@ class ProdutosController {
       params.append(key, value);
     });
 
-    if(req.body.cdsProdutos) params.append('cd', req.body.cdsProdutos);
+    if(req.query.cdsProdutos) params.append('cd', req.query.cdsProdutos);
 
-    params.append('cdErp', req.body.referencias);
-    
+    params.append('cdErp', req.query.referencias);
+
     await axios
       .post(`${serviceApi.url}/pegarProdutosPorCds`, params)
       .then((response) => {
@@ -74,10 +74,10 @@ class ProdutosController {
           delete resultAPI[i].vlComprimento;
           delete resultAPI[i].dtAlteracao;
         }
-        
+
         return res.json({ produtos: resultAPI, total: resultAPI.length });
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 
   async details(req, res) {
@@ -89,13 +89,13 @@ class ProdutosController {
       paramsProdutosFotos.append(key, value);
     });
 
-    paramsProdutosFotos.append('cd', req.body.cdsProdutos)
+    paramsProdutosFotos.append('cd', req.query.cdsProdutos)
     paramsProdutosFotos.append('img', '1');
     paramsProdutosFotos.append('imgs', 'loja-prod-g');
     paramsProdutosFotos.append('sku', '1');
     paramsProdutosFotos.append('niveis', '1');
     paramsProdutosFotos.append('classificacao', '1');
-    
+
     let arrDetalhesProduto = await axios
       .post(`${serviceApi.url}/pegarProdutosPorCds`, paramsProdutosFotos)
       .then((response) => {
@@ -106,7 +106,7 @@ class ProdutosController {
 
         return resultAPI;
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
 
     //Pegando informações dos tamanhos dos produtos e quantidade em estoque
     const paramsTamanhosSaldo = new URLSearchParams();
@@ -115,7 +115,7 @@ class ProdutosController {
       paramsTamanhosSaldo.append(key, value);
     });
 
-    paramsTamanhosSaldo.append('cd', req.body.cdsProdutos)
+    paramsTamanhosSaldo.append('cd', req.query.cdsProdutos)
 
     let arrTamanhosSaldos = await axios
       .post(`${serviceApi.url}/pegarProdutoSaldoPorCdsProduto`, paramsTamanhosSaldo)
@@ -127,9 +127,9 @@ class ProdutosController {
 
         return resultAPI;
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
 
-    
+
     // pegando valores dos produtos
     const paramsValorProduto = new URLSearchParams();
 
@@ -137,7 +137,7 @@ class ProdutosController {
       paramsValorProduto.append(key, value);
     });
 
-    paramsValorProduto.append('cdsProduto', req.body.cdsProdutos)
+    paramsValorProduto.append('cdsProduto', req.query.cdsProdutos)
 
     let arrValoresProdutos = await axios
       .post(`${serviceApi.url}/pegarProdutoValorPorCdsProduto`, paramsValorProduto)
@@ -149,11 +149,11 @@ class ProdutosController {
 
         return resultAPI;
       })
-      .catch((error) => res.status(401).json(error));
-   
+      .catch((error) => res.status(400).json(error));
+
     //iniciando a construção do novo array
     let newArr = {produtos:[{}]};
-    
+
     // alimentando novo array com as infos dos produtos
     arrDetalhesProduto.forEach((produto, index) => {
 
@@ -165,7 +165,7 @@ class ProdutosController {
         }
       });
 
-      newArr.produtos[index] = { 
+      newArr.produtos[index] = {
         cdProduto: produto.cdProduto,
         cdErp: produto.cdErp,
         cdSku: produto.cdSku,
@@ -174,10 +174,10 @@ class ProdutosController {
         tamanhos: [],
         fotos: []
       };
-      
+
     });
 
-    //filtrando para pegar apenas tamanhos e ativos 
+    //filtrando para pegar apenas tamanhos e ativos
     arrDetalhesProduto.forEach((_, i) => {
       let contPosition = 0;
 
@@ -202,12 +202,12 @@ class ProdutosController {
         }
       });
     });
-    
+
     return res.json(newArr);
 
     let arrFotosExcluir;
 
-    await FotosEspeciais.find(function(err,obj) { 
+    await FotosEspeciais.find(function(err,obj) {
       if(obj) arrFotosExcluir = obj;
     });
 
@@ -223,7 +223,7 @@ class ProdutosController {
             vlOrdem: foto.vlOrdem,
             url: foto.img['loja-prod-g']
           }
-        
+
           contadorFotos++;
         }
       });
@@ -240,13 +240,11 @@ class ProdutosController {
       });
     });
 
-
-
     //adicionando os saldos ao newArr
     newArr.produtos.forEach((produto, i) => {
       arrTamanhosSaldos.forEach((tamSal, its) => {
         if(tamSal.cdProduto === produto.cdProduto) {
-          newArr.produtos[i].tamanhos.forEach((tamanho, it) => {     
+          newArr.produtos[i].tamanhos.forEach((tamanho, it) => {
             arrTamanhosSaldos[its].skus.forEach((tamSalSkus, c) => {
               if(tamanho.cdSku == tamSalSkus.cdSku) {
                 newArr.produtos[i].tamanhos[it].saldos = tamSalSkus.saldos[0].qtDisponivel;
@@ -265,7 +263,7 @@ class ProdutosController {
         if(tamVal.cdProduto === produto.cdProduto) {
 
           newArr.produtos[i].tamanhos.forEach((tamanho, it) => {
-            
+
             arrValoresProdutos[its].skus.forEach((tamValSkus, c) => {
 
               if(tamanho.cdSku == tamValSkus.cdSku) {
@@ -275,13 +273,12 @@ class ProdutosController {
             });
           });
         }
-      });  
+      });
     });
 
     return res.json(newArr);
   }
 
-
 }
 
-export default new ProdutosController(); 
+export default new ProdutosController();

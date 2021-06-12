@@ -17,10 +17,10 @@ class PdfController {
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    
-    console.log(encodeURIComponent(req.body.cdsProdutos));
 
-    await page.goto('http://localhost:3000/createPdf/'+encodeURIComponent(req.body.cdsProdutos), {
+    console.log(encodeURIComponent(req.query.cdsProdutos));
+
+    await page.goto('http://localhost:3000/createPdf/'+encodeURIComponent(req.query.cdsProdutos), {
         waitUntil: 'networkidle0'
     });
 
@@ -40,7 +40,7 @@ class PdfController {
     res.contentType("application/pdf");
 
     return res.send(pdf);
-  
+
   }
 
   async create(req, res) {
@@ -58,7 +58,7 @@ class PdfController {
     paramsProdutosFotos.append('sku', '1');
     paramsProdutosFotos.append('niveis', '1');
     paramsProdutosFotos.append('classificacao', '1');
-    
+
     let arrDetalhesProduto = await axios
       .post(`${serviceApi.url}/pegarProdutosPorCds`, paramsProdutosFotos)
       .then((response) => {
@@ -70,7 +70,7 @@ class PdfController {
         return resultAPI;
       })
       .catch((error) => res.status(401).json(error));
-      
+
     //Pegando informações dos tamanhos dos produtos e quantidade em estoque
     const paramsTamanhosSaldo = new URLSearchParams();
 
@@ -92,7 +92,7 @@ class PdfController {
       })
       .catch((error) => res.status(401).json(error));
 
-    
+
     // pegando valores dos produtos
     const paramsValorProduto = new URLSearchParams();
 
@@ -113,10 +113,10 @@ class PdfController {
         return resultAPI;
       })
       .catch((error) => res.status(401).json(error));
-   
+
     //iniciando a construção do novo array
     let newArr = { produtos:[{}] };
-    
+
     // alimentando novo array com as infos dos produtos
     arrDetalhesProduto.forEach((produto, index) => {
 
@@ -128,7 +128,7 @@ class PdfController {
         }
       });
 
-      newArr.produtos[index] = { 
+      newArr.produtos[index] = {
         cdProduto: produto.cdProduto,
         cdErp: produto.cdErp,
         cdSku: produto.cdSku,
@@ -137,10 +137,10 @@ class PdfController {
         tamanhos: [],
         fotos: []
       };
-      
+
     });
 
-    //filtrando para pegar apenas tamanhos e ativos 
+    //filtrando para pegar apenas tamanhos e ativos
     arrDetalhesProduto.forEach((_, i) => {
       let contPosition = 0;
 
@@ -168,7 +168,7 @@ class PdfController {
 
     let arrFotosExcluir;
 
-    await FotosEspeciais.find(function(err,obj) { 
+    await FotosEspeciais.find(function(err,obj) {
       if(obj) arrFotosExcluir = obj;
     });
 
@@ -184,7 +184,7 @@ class PdfController {
             vlOrdem: foto.vlOrdem,
             url: foto.img['loja-prod-g']
           }
-        
+
           contadorFotos++;
         }
       });
@@ -205,7 +205,7 @@ class PdfController {
     newArr.produtos.forEach((produto, i) => {
       arrTamanhosSaldos.forEach((tamSal, its) => {
         if(tamSal.cdProduto === produto.cdProduto) {
-          newArr.produtos[i].tamanhos.forEach((tamanho, it) => {     
+          newArr.produtos[i].tamanhos.forEach((tamanho, it) => {
             arrTamanhosSaldos[its].skus.forEach((tamSalSkus, c) => {
               if(tamanho.cdSku == tamSalSkus.cdSku) {
                 newArr.produtos[i].tamanhos[it].saldos = tamSalSkus.saldos[0].qtDisponivel;
@@ -224,7 +224,7 @@ class PdfController {
         if(tamVal.cdProduto === produto.cdProduto) {
 
           newArr.produtos[i].tamanhos.forEach((tamanho, it) => {
-            
+
             arrValoresProdutos[its].skus.forEach((tamValSkus, c) => {
 
               if(tamanho.cdSku == tamValSkus.cdSku) {
@@ -234,7 +234,7 @@ class PdfController {
             });
           });
         }
-      });  
+      });
     });
 
 
@@ -243,16 +243,16 @@ class PdfController {
     let capas = { capas:[{ capa: fotoCapa[0].url_imagem, contraCapa: fotoCapa[1].url_imagem }]};
 
     const filePath = path.join(__dirname, "..", "templates", "catalogo.ejs");
-    
+
     ejs.renderFile(filePath, Object.assign(newArr, capas), (err, html) => {
         if(err) {
             return res.send('Erro na leitura do arquivo')
         }
-    
+
         // enviar para o navegador
         return res.send(html)
     })
-    
+
   }
 }
 

@@ -22,13 +22,13 @@ class SessionController {
     });
 
     if (!admin) {
-      res.status(401).json({ error: 'Email não cadastrado!' });
+      res.status(400).json({ error: 'Usuário não cadastrado.' });
     }
 
     const checkPassword = await bcrypt.compare(password, admin.password_hash);
 
     if (!checkPassword) {
-      res.status(401).json({ error: 'Senha incorreta!' });
+      res.status(400).json({ error: 'Usuário ou senha incorretos.' });
     }
 
     const { id, nome } = admin;
