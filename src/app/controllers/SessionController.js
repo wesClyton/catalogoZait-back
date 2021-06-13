@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import * as Yup from 'yup';
 import bcrypt from 'bcryptjs';
-import Admin from '../schemas/Admin';
-import authConfig from '../../config/auth';
+import Admin from '../schemas/Admin.js';
+import authConfig from '../../config/auth.js';
 
 class SessionController {
   async sessionAdmin(req, res) {

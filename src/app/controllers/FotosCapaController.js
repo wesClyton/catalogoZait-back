@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import fs from 'fs';
 
-import FotoCapa from '../schemas/FotoCapa';
+import FotoCapa from '../schemas/FotoCapa.js';
 
 class FotosCapaController {
   async update(req, res) {

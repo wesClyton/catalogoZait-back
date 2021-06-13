@@ -1,6 +1,6 @@
 import axios from 'axios';
-import serviceApi from '../utils/serviceApi';
-import FotosEspeciais from '../schemas/FotosEspeciais';
+import serviceApi from '../utils/serviceApi.js';
+import FotosEspeciais from '../schemas/FotosEspeciais.js';
 import _Arr from 'lodash';
 
 class ProdutosController {

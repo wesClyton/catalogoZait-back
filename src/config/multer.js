@@ -1,9 +1,13 @@
+// a extensao do arquivo (extname) e percorrer um caminho na aplicacao (resolve)
+import path from 'path';
 // biblioteca do multer
 import multer from 'multer';
 // para podermos gerar um hash do nome do arquivo
 import crypto from 'crypto';
-// a extensao do arquivo (extname) e percorrer um caminho na aplicacao (resolve)
-import { extname, resolve } from 'path';
+
+const __dirname = path.resolve(path.dirname(''));
+const resolve = path.resolve;
+
 
 export default {
   // storage vai dizer como o multer vai guardar os arquivos de imagem

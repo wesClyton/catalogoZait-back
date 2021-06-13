@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
-import FotosEspeciais from '../schemas/FotosEspeciais';
-import Utils from '../utils/utils';
+import FotosEspeciais from '../schemas/FotosEspeciais.js';
+import Utils from '../utils/utils.js';
 
 class FotosEspeciaisController {
   async insert(req, res) {

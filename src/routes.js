@@ -1,20 +1,20 @@
 import { Router } from 'express'
 import multer from 'multer';
-import multerConfig from './config/multer'; 
-import AuthMiddleware from './app/middlewares/auth';
-import AdminMiddleware from './app/middlewares/admin';
+import multerConfig from './config/multer.js'; 
+import AuthMiddleware from './app/middlewares/auth.js';
+import AdminMiddleware from './app/middlewares/admin.js';
 
-import SessionController from './app/controllers/SessionController';
-import TesteAuthController from './app/controllers/TesteAuthController';
-import AdminController from './app/controllers/AdminController';
-import CategoriaController from './app/controllers/CategoriaController';
-import ClassificacaoController from './app/controllers/ClassificacaoController';
-import CoresController from './app/controllers/CoresController';
-import TamanhosController from './app/controllers/TamanhosController';
-import FotosEspeciaisController from './app/controllers/FotosEspeciaisController';
-import FotosCapaController from './app/controllers/FotosCapaController';
-import ProdutosController from './app/controllers/ProdutosController';
-import PdfController from './app/controllers/PdfController';
+import SessionController from './app/controllers/SessionController.js';
+import TesteAuthController from './app/controllers/TesteAuthController.js';
+import AdminController from './app/controllers/AdminController.js';
+import CategoriaController from './app/controllers/CategoriaController.js';
+import ClassificacaoController from './app/controllers/ClassificacaoController.js';
+import CoresController from './app/controllers/CoresController.js';
+import TamanhosController from './app/controllers/TamanhosController.js';
+import FotosEspeciaisController from './app/controllers/FotosEspeciaisController.js';
+import FotosCapaController from './app/controllers/FotosCapaController.js';
+import ProdutosController from './app/controllers/ProdutosController.js';
+import PdfController from './app/controllers/PdfController.js';
 
 const routes = new Router();
 const upload = multer(multerConfig);

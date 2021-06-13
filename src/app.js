@@ -1,9 +1,12 @@
 import express from 'express';
 import path from 'path';
-import routes from './routes';
+import routes from './routes.js';
 import cors from 'cors';
 
-import './database';
+import './database/index.js';
+
+const __dirname = path.resolve(path.dirname(''));
+const resolve = path.resolve;
 
 class App {
   constructor() {

@@ -1,4 +1,4 @@
-import Admin from '../schemas/Admin';
+import Admin from '../schemas/Admin.js';
 
 export default async (req, res, next) => {
   const isAdmin = await Admin.findById(req.idAdmin).and({
