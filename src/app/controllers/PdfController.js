@@ -28,10 +28,6 @@ class PdfController {
         waitUntil: 'networkidle0'
     });
 
-    // await page.goto('http://localhost:3000/createPdf/1001%2C1338%2C1220', {
-    //     waitUntil: 'networkidle0'
-    // });
-
     const pdf = await page.pdf({
         printBackground: true,
         preferCSSPageSize: true,

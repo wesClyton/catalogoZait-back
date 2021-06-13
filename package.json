@@ -1,7 +1,6 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "type": "module",
   "main": "index.js",
   "author": "Weslley Hinsch",
   "license": "MIT",
