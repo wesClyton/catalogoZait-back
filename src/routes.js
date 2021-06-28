@@ -15,11 +15,14 @@ import FotosEspeciaisController from './app/controllers/FotosEspeciaisController
 import FotosCapaController from './app/controllers/FotosCapaController.js';
 import ProdutosController from './app/controllers/ProdutosController.js';
 import PdfController from './app/controllers/PdfController.js';
+import TesteApiMknet from './app/controllers/TesteApiMknet';
 
 const routes = new Router();
 const upload = multer(multerConfig);
 
 routes.get('/', (req, res) => res.json({ message: 'OK!' }));
+// routes.get('/testeApiMknet', (req, res) => res.json({ message: 'OK!' }));
+routes.get('/testeApiMknet', TesteApiMknet.index);
 
 routes.post('/sessionAdmin', SessionController.sessionAdmin);
 routes.post('/sessionUser', SessionController.sessionUser);
