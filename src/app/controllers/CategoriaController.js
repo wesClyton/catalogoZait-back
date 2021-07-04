@@ -147,6 +147,28 @@ class CategoriaController {
       })
       .catch((error) => res.status(400).json(error));
   }
+
+  async delete(req, res) {
+
+    if (req.params.id == 'all') {
+      const categoriaData = await Categoria.deleteMany();
+      return res.status(201).json({ message: `Categorias deletadas com sucesso!` });
+    }
+
+    const categoria = await Categoria.findById(
+      req.params.id
+    );
+
+    if (!categoria) {
+      return res.status(400).json({ error: 'Categoria não encontrada' });
+    };
+
+    const categoriaData = await Categoria.findByIdAndRemove(
+      req.params.id
+    );
+
+    return res.status(201).json({ message: `Categoria deletada com sucesso!` });
+  }
 }
 
 export default new CategoriaController();

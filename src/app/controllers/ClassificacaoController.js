@@ -145,6 +145,28 @@ class ClassificacaoController {
       })
       .catch((error) => res.status(400).json(error));
   }
+
+  async delete(req, res) {
+
+    if (req.params.id == 'all') {
+      const classificacaoData = await Classificacao.deleteMany();
+      return res.status(201).json({ message: `Classificações deletadas com sucesso!` });
+    }
+
+    const classificacao = await Classificacao.findById(
+      req.params.id
+    );
+
+    if (!classificacao) {
+      return res.status(400).json({ error: 'Classificação não encontrada' });
+    };
+
+    const classificacaoData = await Classificacao.findByIdAndRemove(
+      req.params.id
+    );
+
+    return res.status(201).json({ message: `Classificação deletada com sucesso!` });
+  }
 }
 
 export default new ClassificacaoController();

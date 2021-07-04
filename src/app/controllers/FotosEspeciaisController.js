@@ -79,6 +79,32 @@ class FotosEspeciaisController {
     return res.json(fotosEspeciaisData);
 
   }
+
+  async delete(req, res) {
+
+    const fotosEspeciais = await FotosEspeciais.findById(
+      req.params.id
+    );
+
+    if (!fotosEspeciais) {
+      return res.status(400).json({ error: 'Referencia não encontrada' });
+    };
+
+    const fotosData = await FotosEspeciais.findByIdAndRemove(
+      req.params.id
+    );
+
+    return res.status(201).json({ message: `Referencia deletada com sucesso!` });
+  }
+
+  async deleteAll(req, res) {
+
+    const fotoData = await FotosEspeciais.deleteMany({ "categoria": req.params.categoria });
+    return res.status(201).json({ message: `Referencias deletadas com sucesso!` });
+
+  }
+
+
 }
 
 export default new FotosEspeciaisController();

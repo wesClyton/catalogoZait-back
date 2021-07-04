@@ -45,16 +45,20 @@ routes.post('/categoria', CategoriaController.insert);
 routes.get('/categoria', CategoriaController.index);
 routes.get('/categoria/db', CategoriaController.indexDB);
 routes.get('/categoria/:nome', CategoriaController.search);
+routes.delete('/categoria/:id', CategoriaController.delete);
 
 routes.post('/classificacao', ClassificacaoController.insert);
 routes.get('/classificacao', ClassificacaoController.index);
 routes.get('/classificacao/db', ClassificacaoController.indexDB);
 routes.get('/classificacao/:nome', ClassificacaoController.search);
+routes.delete('/classificacao/:id', ClassificacaoController.delete);
 
 routes.post('/fotosEspeciais', AdminMiddleware, FotosEspeciaisController.insert);
 routes.get('/fotosEspeciais', FotosEspeciaisController.index);
 routes.get('/fotosEspeciais/db', FotosEspeciaisController.indexDB);
 routes.get('/fotosEspeciais/:referencia', FotosEspeciaisController.details);
+routes.delete('/fotosEspeciais/:id', FotosEspeciaisController.delete);
+routes.delete('/fotosEspeciais/all/:categoria', FotosEspeciaisController.deleteAll);
 
 routes.put('/capas/:id', upload.single('imagem'), FotosCapaController.update);
 routes.get('/capas', FotosCapaController.index);

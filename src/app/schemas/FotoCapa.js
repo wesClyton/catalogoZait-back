@@ -31,7 +31,7 @@ FotoCapaSchema.plugin(mongoosePaginate);
 
 // campo virtual de url
 FotoCapaSchema.virtual('url_imagem').get(function () {
-  return `https://catalogo.178.128.152.242.getmoss.site/uploads/${this.imagem}`;
+  return `http://localhost:3000/uploads/${this.imagem}`;
 });
 
 export default mongoose.model(
