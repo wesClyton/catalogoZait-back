@@ -28,7 +28,7 @@ class AdminController {
     });
 
     if (admin) {
-      return res.status(401).json({ error: 'Este email já está cadastrado!' });
+      return res.status(400).json({ error: 'Este email já está cadastrado!' });
     }
 
     req.body.password_hash = await bcrypt.hash(password, 8);
@@ -103,7 +103,7 @@ class AdminController {
       });
 
       if (emailExists) {
-        return res.status(401).json({ error: 'Email já cadastrado!' });
+        return res.status(400).json({ error: 'Email já cadastrado!' });
       }
     }
 
@@ -113,7 +113,7 @@ class AdminController {
     );
 
     if (!checkPassword) {
-      return res.status(401).json({ error: 'Senha atual incorreta!' });
+      return res.status(400).json({ error: 'Senha atual incorreta!' });
     }
 
     req.body.password_hash = await bcrypt.hash(password, 8);

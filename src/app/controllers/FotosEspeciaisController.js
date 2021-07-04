@@ -25,7 +25,7 @@ class FotosEspeciaisController {
     });
 
     if (fotosEspeciais) {
-      return res.status(401).json({ error: `Esta referencia já esta cadastrada para as categorias: ${fotosEspeciais.categoria}`});
+      return res.status(400).json({ error: `Esta referencia já esta cadastrada para as categorias: ${fotosEspeciais.categoria}` });
     }
 
     const fotosEspeciaisData = await FotosEspeciais.create(req.body);
@@ -74,8 +74,8 @@ class FotosEspeciaisController {
   async details(req, res) {
 
     const regex = new RegExp(req.params.referencia, 'i') // i for case insensitive
-    const fotosEspeciaisData = await FotosEspeciais.find({referencia: {$regex: regex}})
-    
+    const fotosEspeciaisData = await FotosEspeciais.find({ referencia: { $regex: regex } })
+
     return res.json(fotosEspeciaisData);
 
   }

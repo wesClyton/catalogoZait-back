@@ -8,13 +8,12 @@ import crypto from 'crypto';
 const __dirname = path.resolve(path.dirname(''));
 const resolve = path.resolve;
 
-
 export default {
   // storage vai dizer como o multer vai guardar os arquivos de imagem
   // o diskstorage permite gravar no servidor
   storage: multer.diskStorage({
     // aqui vou dizer em qual destino (caminho) o arquivo vai ser armazenado
-    destination: resolve(__dirname, '..', '..', 'uploads'),
+    destination: resolve(__dirname, 'public', 'uploads'),
     // filename aceita uma funcao que recebe 3 propriedades
     // req é a requisicao que recebemos, o file é os dados do arquivo e cb é uma funcao callback
     filename: (req, file, cb) => {

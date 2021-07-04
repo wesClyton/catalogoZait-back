@@ -27,7 +27,7 @@ class CoresController {
 
         return res.json({ cores: resultAPI, total: resultAPI.length });
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 }
 

@@ -30,8 +30,8 @@ const FotoCapaSchema = new mongoose.Schema(
 FotoCapaSchema.plugin(mongoosePaginate);
 
 // campo virtual de url
-FotoCapaSchema.virtual('url_imagem').get(function() {
-  return `http://localhost:3000/capas/${this.imagem}`;
+FotoCapaSchema.virtual('url_imagem').get(function () {
+  return `http://localhost:3000/uploads/${this.imagem}`;
 });
 
 export default mongoose.model(

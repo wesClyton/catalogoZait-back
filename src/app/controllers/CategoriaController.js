@@ -26,7 +26,7 @@ class CategoriaController {
     });
 
     if (categoria) {
-      return res.status(401).json({ error: 'Este nível já esta cadastrado!' });
+      return res.status(400).json({ error: 'Este nível já esta cadastrado!' });
     }
 
     const categoriaData = await Categoria.create(req.body);
@@ -106,7 +106,7 @@ class CategoriaController {
 
         return res.json({ categorias: finalArr, total: finalArr.length });
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 
   async indexDB(req, res) {
@@ -145,7 +145,7 @@ class CategoriaController {
 
         return res.json(filteredAPI);
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 }
 

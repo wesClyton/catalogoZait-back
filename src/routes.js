@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import multer from 'multer';
-import multerConfig from './config/multer.js'; 
+import multerConfig from './config/multer.js';
 import AuthMiddleware from './app/middlewares/auth.js';
 import AdminMiddleware from './app/middlewares/admin.js';
 
@@ -21,7 +21,6 @@ const routes = new Router();
 const upload = multer(multerConfig);
 
 routes.get('/', (req, res) => res.json({ message: 'OK!' }));
-// routes.get('/testeApiMknet', (req, res) => res.json({ message: 'OK!' }));
 routes.get('/testeApiMknet', TesteApiMknet.index);
 
 routes.post('/sessionAdmin', SessionController.sessionAdmin);

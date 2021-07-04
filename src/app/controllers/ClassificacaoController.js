@@ -29,7 +29,7 @@ class ClassificacaoController {
     });
 
     if (classificacao) {
-      return res.status(401).json({ error: 'Esta classificação já esta cadastrada!' });
+      return res.status(400).json({ error: 'Esta classificação já esta cadastrada!' });
     }
 
     const classificacaoData = await Classificacao.create(req.body);
@@ -104,12 +104,12 @@ class ClassificacaoController {
 
         return res.json({ tipos: finalArr, total: finalArr.length });
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 
   async indexDB(req, res) {
     const classificacaoData = await Classificacao.find().select('stNome cdClassificacao');
-    
+
     return res.json(classificacaoData);
   }
 
@@ -143,7 +143,7 @@ class ClassificacaoController {
 
         return res.json(filteredAPI);
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 }
 

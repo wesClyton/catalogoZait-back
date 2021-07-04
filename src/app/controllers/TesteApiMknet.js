@@ -17,10 +17,10 @@ class TesteApiMknet {
           return res.json({ error: response.data.erros[0].message });
 
         const resultAPI = response.data.cores;
-        
+
         return res.json(resultAPI);
       })
-      .catch((error) => res.status(401).json(error));
+      .catch((error) => res.status(400).json(error));
   }
 }
 

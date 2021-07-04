@@ -11,7 +11,7 @@ class Database {
       {
         useCreateIndex: true,
         useNewUrlParser: true,
-        useFindAndModify: true,
+        useFindAndModify: false,
         useUnifiedTopology: true,
       }
     );
