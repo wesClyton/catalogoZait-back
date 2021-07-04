@@ -33,9 +33,9 @@ class FotosCapaController {
       return res.status(400).json({ error: 'Esta capa não está cadastrada' });
     }
 
-    // fs.unlink(`${__dirname}/public/uploads/${foto_antiga}`, (err => {
-    //   if (err) console.log(err);
-    // }));
+    fs.unlink(`${__dirname}/public/uploads/${foto_antiga}`, (err => {
+      if (err) console.log(err);
+    }));
 
     const { filename: capa_imagem } = req.file;
     req.body.imagem = capa_imagem;
