@@ -6,6 +6,8 @@ import FotoCapa from '../schemas/FotoCapa.js';
 
 const __dirname = path.resolve(path.dirname(''));
 
+console.log(__dirname);
+
 class FotosCapaController {
   async update(req, res) {
     const schema = Yup.object().shape({
