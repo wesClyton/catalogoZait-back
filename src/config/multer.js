@@ -27,7 +27,7 @@ export default {
         // transforma os 16 bytes para string (hexadecimal)
         // e faz a concatenacao com o nome original do arquivo
         // mas vamos tirar o nome do arquivo e usar somente a extensao do arquivo
-        return cb(null, res.toString('hex') + extname(file.originalname));
+        return cb(null, res.toString('hex') + path.extname(file.originalname));
       });
     },
   }),

@@ -1,7 +1,10 @@
+import path from 'path';
 import * as Yup from 'yup';
 import fs from 'fs';
 
 import FotoCapa from '../schemas/FotoCapa.js';
+
+const __dirname = path.resolve(path.dirname(''));
 
 class FotosCapaController {
   async update(req, res) {
@@ -42,7 +45,7 @@ class FotosCapaController {
       req.body,
       { new: true }
     );
-    
+
     return res.json(fotoCapaData);
   }
 
