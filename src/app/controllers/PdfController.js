@@ -14,7 +14,6 @@ import FotoCapa from '../schemas/FotoCapa.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
 class PdfController {
 
   async gerate(req, res) {
@@ -92,7 +91,6 @@ class PdfController {
       })
       .catch((error) => res.status(400).json(error));
 
-
     // pegando valores dos produtos
     const paramsValorProduto = new URLSearchParams();
 
@@ -135,6 +133,7 @@ class PdfController {
         stNome: produto.stNome,
         codClassificacao: codClassificacao,
         tamanhos: [],
+        qtdeTotal: 0,
         fotos: []
       };
 
@@ -177,17 +176,25 @@ class PdfController {
       const indexImg = arrDetalhesProduto[i].imgs.length - 1;
       let contadorFotos = 1;
 
-      arrDetalhesProduto[i].imgs[indexImg].fotos.forEach((foto, iFoto) => {
+      if(arrDetalhesProduto[i].imgs.length > 0 ) {
 
-        if (contadorFotos <= 4) { // pegar apenas 4 fotos
-          newArr.produtos[i].fotos[iFoto] = {
-            vlOrdem: foto.vlOrdem,
-            url: foto.img['loja-prod-g']
+        arrDetalhesProduto[i].imgs[indexImg].fotos.forEach((foto, iFoto) => {
+
+          if (contadorFotos <= 4) { // pegar apenas 4 fotos
+            newArr.produtos[i].fotos[iFoto] = {
+              vlOrdem: foto.vlOrdem,
+              url: foto.img['loja-prod-g']
+            }
+
+            contadorFotos++;
           }
-
-          contadorFotos++;
+        });
+      } else {
+        newArr.produtos[i].fotos[0] = {
+          vlOrdem: 0,
+          url: 'http://localhost:3000/img/sem-foto.png'
         }
-      });
+      }
 
     });
 
@@ -202,16 +209,21 @@ class PdfController {
     });
 
     //adicionando os saldos ao newArr
+    let qtdeTotal = 0;
     newArr.produtos.forEach((produto, i) => {
       arrTamanhosSaldos.forEach((tamSal, its) => {
         if (tamSal.cdProduto === produto.cdProduto) {
           newArr.produtos[i].tamanhos.forEach((tamanho, it) => {
             arrTamanhosSaldos[its].skus.forEach((tamSalSkus, c) => {
               if (tamanho.cdSku == tamSalSkus.cdSku) {
+                qtdeTotal = qtdeTotal + tamSalSkus.saldos[0].qtDisponivel;
                 newArr.produtos[i].tamanhos[it].saldos = tamSalSkus.saldos[0].qtDisponivel;
               }
             });
           });
+
+          newArr.produtos[i].qtdeTotal = qtdeTotal;
+          qtdeTotal = 0;
         }
       });
     });
@@ -237,6 +249,11 @@ class PdfController {
       });
     });
 
+    //remover produtos sem quantidade disponível
+    newArr.produtos.forEach((produto, i) => {
+      if(produto.qtdeTotal <= 0)
+        newArr.produtos.splice(i, 1);
+    });
 
     const fotoCapa = await FotoCapa.find();
 

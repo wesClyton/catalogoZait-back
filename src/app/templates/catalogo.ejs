@@ -147,6 +147,11 @@
       left: 0;
     }
 
+    .images .sem-foto {
+      left: 50%;
+      margin-left: -200px;
+    }
+
     .images .foto-2 {
       width: 280px;
       height: 515px;
@@ -355,9 +360,14 @@
           let cont = 0;
 
           produto.fotos.forEach(foto => { 
+            let classe = '';
             cont++;
+
+            if(foto.url == 'http://localhost:3000/img/sem-foto.png') {
+              classe = 'sem-foto';
+            }
         %>
-            <img src="<%=foto.url%>" class="foto-<%=cont%>">
+            <img src="<%=foto.url%>" class="foto-<%=cont%> <%=classe%>">
         <%  if(cont >= 3) produto.fotos.length = 0; }); 
         %>
 
