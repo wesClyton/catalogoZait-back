@@ -250,10 +250,21 @@ class PdfController {
     });
 
     //remover produtos sem quantidade disponível
-    newArr.produtos.forEach((produto, i) => {
-      if(produto.qtdeTotal <= 0)
-        newArr.produtos.splice(i, 1);
-    });
+    let index = newArr.produtos.length;
+    console.log(index);
+    while (index--) {
+      if(newArr.produtos[index].qtdeTotal <= 0) {
+        console.log(index);
+        newArr.produtos.splice(index, 1);
+      }
+    }
+
+    // newArr.produtos.forEach((produto, i) => {
+    //   if(produto.qtdeTotal <= 0) {
+    //     console.log(i);
+    //     newArr.produtos.splice(i, 1);
+    //   }
+    // });
 
     const fotoCapa = await FotoCapa.find();
 
