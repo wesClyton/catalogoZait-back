@@ -77,7 +77,8 @@ class PdfController {
       paramsTamanhosSaldo.append(key, value);
     });
 
-    paramsTamanhosSaldo.append('cd', req.params.cdsProdutos)
+    paramsTamanhosSaldo.append('cd', req.params.cdsProdutos);
+    paramsTamanhosSaldo.append('cdsaldo', 3);
 
     let arrTamanhosSaldos = await axios
       .post(`${serviceApi.url}/pegarProdutoSaldoPorCdsProduto`, paramsTamanhosSaldo)
