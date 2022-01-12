@@ -21,7 +21,7 @@ class PdfController {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    console.log(encodeURIComponent(req.query.cdsProdutos));
+    // console.log(encodeURIComponent(req.query.cdsProdutos));
 
     await page.goto('http://localhost:3000/createPdf/' + encodeURIComponent(req.query.cdsProdutos), {
       waitUntil: 'networkidle0'
