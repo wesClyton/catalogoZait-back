@@ -1,5 +1,5 @@
 export default {
-  url: 'https://zait.com.br/api/rest/act',
+  url: 'https://zaitatacado.com.br/api/rest/act',
   items: {
     identidade: 'suporte@marknet.com.br',
     credencial: 'OOY8zCZTPVCFxWkO55lD3v9n0kFpADSF',
